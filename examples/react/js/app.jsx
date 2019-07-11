@@ -11,6 +11,8 @@ var app = app || {};
 	app.ALL_TODOS = 'all';
 	app.ACTIVE_TODOS = 'active';
 	app.COMPLETED_TODOS = 'completed';
+	app.DESCENDENT = 'descendent';
+	app.ASCENDENT = 'ascendent';
 	var TodoFooter = app.TodoFooter;
 	var TodoItem = app.TodoItem;
 
@@ -20,6 +22,7 @@ var app = app || {};
 		getInitialState: function () {
 			return {
 				nowShowing: app.ALL_TODOS,
+				showOrder: app.DESCENDENT,
 				editing: null,
 				newTodo: ''
 			};
@@ -27,10 +30,13 @@ var app = app || {};
 
 		componentDidMount: function () {
 			var setState = this.setState;
+			this.setState({showOrder: app.DESCENDENT})
 			var router = Router({
 				'/': setState.bind(this, {nowShowing: app.ALL_TODOS}),
 				'/active': setState.bind(this, {nowShowing: app.ACTIVE_TODOS}),
-				'/completed': setState.bind(this, {nowShowing: app.COMPLETED_TODOS})
+				'/completed': setState.bind(this, {nowShowing: app.COMPLETED_TODOS}),
+				'/descendent': setState.bind(this, {showOrder: app.DESCENDENT}),
+				'/ascendent': setState.bind(this, {showOrder: app.ASCENDENT}),
 			});
 			router.init('/');
 		},
@@ -99,6 +105,7 @@ var app = app || {};
 					return true;
 				}
 			}, this);
+			// TODO: sort
 
 			var todoItems = shownTodos.map(function (todo) {
 				return (
@@ -127,6 +134,7 @@ var app = app || {};
 						count={activeTodoCount}
 						completedCount={completedCount}
 						nowShowing={this.state.nowShowing}
+						showOrder={this.state.showOrder}
 						onClearCompleted={this.clearCompleted}
 					/>;
 			}

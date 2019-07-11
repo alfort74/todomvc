@@ -24,6 +24,7 @@ var app = app || {};
 			}
 
 			var nowShowing = this.props.nowShowing;
+			var showOrder = this.props.showOrder;
 			return (
 				<footer className="footer">
 					<span className="todo-count">
@@ -51,6 +52,22 @@ var app = app || {};
 								href="#/completed"
 								className={classNames({selected: nowShowing === app.COMPLETED_TODOS})}>
 									Completed
+							</a>
+						</li>
+						{' '}
+						<li>
+							<a
+								href="#/descendent"
+								className={classNames({selected: showOrder === app.DESCENDENT})}>
+									desc
+							</a>
+						</li>
+						{' '}
+						<li>
+							<a
+								href="#/ascendent"
+								className={classNames({selected: showOrder === app.ASCENDENT})}>
+									asc
 							</a>
 						</li>
 					</ul>
