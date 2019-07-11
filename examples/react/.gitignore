@@ -1,3 +1,4 @@
+node_modules
 node_modules/director
 !node_modules/director/build/director.js
 
