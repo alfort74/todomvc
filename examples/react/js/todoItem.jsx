@@ -8,6 +8,8 @@ var app = app || {};
 (function () {
 	'use strict';
 
+	var Utils = app.Utils;
+
 	var ESCAPE_KEY = 27;
 	var ENTER_KEY = 13;
 
@@ -89,7 +91,7 @@ var app = app || {};
 							onChange={this.props.onToggle}
 						/>
 						<label onDoubleClick={this.handleEdit}>
-							{this.props.todo.title} - {this.props.todo.date}
+							{this.props.todo.title} - {Utils.printDate(this.props.todo.date)}
 						</label>
 						<button className="destroy" onClick={this.props.onDestroy} />
 					</div>

@@ -33,7 +33,7 @@ var app = app || {};
 			id: Utils.uuid(),
 			title: title,
 			completed: false,
-			date: "Today"
+			date: Date().toString()
 		});
 
 		this.inform();
@@ -71,8 +71,7 @@ var app = app || {};
 
 	app.TodoModel.prototype.save = function (todoToSave, text) {
 		this.todos = this.todos.map(function (todo) {
-			return todo !== todoToSave ? todo : Utils.extend({}, todo, {title: text});
-			// TODO: 日付を追加
+			return todo !== todoToSave ? todo : Utils.extend({}, todo, {title: text, date: Date().toString()});
 		});
 
 		this.inform();

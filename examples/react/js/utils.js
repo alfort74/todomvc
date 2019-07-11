@@ -25,6 +25,11 @@ var app = app || {};
 			return count === 1 ? word : word + 's';
 		},
 
+		printDate: function (dateStr) {
+			const date = new Date(dateStr)
+			return date.getFullYear() + '/' + date.getMonth() + '/' + date.getDay() + ' ' + date.getHours() + ':' + date.getMinutes()
+		},
+
 		store: function (namespace, data) {
 			if (data) {
 				return localStorage.setItem(namespace, JSON.stringify(data));
