@@ -105,9 +105,13 @@ var app = app || {};
 					return true;
 				}
 			}, this);
-			// TODO: sort
 
-			var todoItems = shownTodos.map(function (todo) {
+			var orderedTodos = todos.sort((one, another) => {
+				const order = this.state.showOrder === app.ASCENDENT ? 1 : -1
+				return order * (new Date(one.date) - new Date(another.date))
+			})
+
+			var todoItems = orderedTodos.map(function (todo) {
 				return (
 					<TodoItem
 						key={todo.id}
